@@ -9,7 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@eslint/js": "^9.4.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "eslint": "^9.4.0",
+    "eslint-plugin-svelte": "^2.39.0",
+    "globals": "^15.3.0",
     "svelte": "^4.2.12",
     "vite": "^5.2.0"
   }
