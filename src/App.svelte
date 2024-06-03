@@ -1,6 +1,5 @@
 <script>
-  import CircularProgressChart from "./lib/CircularProgressChart.svelte";
-import Table from "./lib/Table.svelte"
+  import Table from "./lib/Table.svelte"
 </script>
 
 <main>
