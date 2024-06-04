@@ -1,11 +1,22 @@
 <script>
-  import Table from "./lib/Table.svelte"
+  import { onMount } from "svelte";
+  import { tasks } from "./stores/tasks";
+  import CreateTask from "./components/CreateTask.svelte";
+  import Header from "./components/Header.svelte";
+  import Table from "./components/Table.svelte"
+  import TaskStorage from "./utils/taskStorage";
+
+  onMount(() => {
+    $tasks = TaskStorage.getTasks();
+  });
 </script>
 
 <main>
-  <Table></Table>
+  <Header/>
+  <CreateTask/>
+  <Table/>
 </main>
 
 <style>
-  
+
 </style>
