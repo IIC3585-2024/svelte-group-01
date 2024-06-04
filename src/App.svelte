@@ -1,47 +1,59 @@
-<script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+<script lang='ts'>
+  import { onMount } from "svelte";
+  import { tasks } from "./stores/tasks";
+  import CreateTask from "./components/CreateTask.svelte";
+  import Header from "./components/Header.svelte";
+  import Table from "./components/Table.svelte"
+  import TaskStorage from "./utils/taskStorage";
+  import ProjectsCharge from "./components/ProjectsCharge.svelte";
+
+  onMount(() => {
+    $tasks = TaskStorage.getTasks();
+  });
+
+  let option: string = "tasks";
 </script>
 
-<main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-</main>
-
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+  main {
+    min-width: 50rem;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+
+  .options-bar {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
   }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
+
+  .options-button {
+    padding: 0.5rem 1rem;
+    flex-grow: 1;
+    border: none;
+    background-color: #333;
+    cursor: pointer;
   }
-  .read-the-docs {
-    color: #888;
+
+  .options-button:hover {
+    background-color: rgb(100, 100, 100)
+  }
+
+  .options-button:disabled:hover {
+    background-color: #333;
+    cursor: not-allowed;
   }
 </style>
+
+<main>
+  <Header/>
+  <div class="options-bar">
+    <button class="options-button" disabled={option === "tasks"} on:click={() => option = "tasks"}>Tasks</button>
+    <button class="options-button" disabled={option === "report"} on:click={() => option = "report"}>Report</button>
+  </div>
+  {#if option === "tasks"}
+    <CreateTask/>
+    <Table/>
+  {:else}
+    <ProjectsCharge/>
+  {/if}
+</main>
