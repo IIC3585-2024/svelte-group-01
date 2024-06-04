@@ -8,7 +8,7 @@
 
   let isRunning: boolean = false;
   let timer: number | undefined;
-  let progress: number = 0;
+  $: progress = Math.min((sec / goalTime) * 100, 100);
 
   const dispatch = createEventDispatcher();
 

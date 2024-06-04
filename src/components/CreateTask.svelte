@@ -1,6 +1,7 @@
 <script lang='ts'>
   import { tasks } from '../stores/tasks';
   import TaskStorage from '../utils/taskStorage';
+  import GenerateRandomTask from './GenerateRandomTask.svelte';
   let newTask: string = '';
   let newProject: string = '';
   let newGoalTime: number = 0;
@@ -25,8 +26,9 @@
   .create-task {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
   }
 
   .create-task-input {
@@ -34,6 +36,11 @@
     flex-direction: column;
     align-items: flex-start;
     margin-right: 20px;
+  }
+
+  .create-task-input input {
+    width: 100%;
+    box-sizing: border-box;
   }
 </style>
 
@@ -51,4 +58,5 @@
     <input id="goal-time" type="number" bind:value={newGoalTime} min="0" />
   </div>
   <button on:click={addTask} disabled={!canCreateTask}>Add Task</button>
+  <GenerateRandomTask />
 </div>
