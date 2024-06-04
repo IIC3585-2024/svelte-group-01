@@ -2,6 +2,8 @@
     import { createEventDispatcher } from 'svelte';
     import Timer from './Timer.svelte';
     import ProgressBar from './ProgressBar.svelte';
+  import ProjectsCharge from './ProjectsCharge.svelte';
+  import PieChart from './PieChart.svelte';
     
     interface Task {
       task: string;
@@ -11,6 +13,7 @@
     }
     
     let tasks: Task[] = [];
+    $: taskNew = tasks
     let newTask: string = '';
     let newProject: string = '';
     let newGoalTime: number = 0;
@@ -30,6 +33,9 @@
       tasks = tasks.map((task, i) => i === index ? { ...task, progress: event.detail.progress } : task);
       dispatch('taskUpdated', { tasks });
     }
+
+    
+
   </script>
   
   <div>
@@ -62,6 +68,10 @@
         {/each}
       </tbody>
     </table>
+
+    <ProjectsCharge taskList={taskNew}></ProjectsCharge>
+  
+    
   </div>
   
   <style>
