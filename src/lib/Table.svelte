@@ -2,8 +2,8 @@
     import { createEventDispatcher } from 'svelte';
     import Timer from './Timer.svelte';
     import ProgressBar from './ProgressBar.svelte';
-  import ProjectsCharge from './ProjectsCharge.svelte';
-  import PieChart from './PieChart.svelte';
+    import ProjectsCharge from './ProjectsCharge.svelte';
+
     
     interface Task {
       task: string;
