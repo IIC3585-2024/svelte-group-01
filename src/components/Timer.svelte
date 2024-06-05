@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onDestroy } from 'svelte';
   import formatTime from '../utils/formatTime';
 
   export let goalTime: number;
@@ -56,6 +56,10 @@
     updateTaskTime();
     isRunning = false;
   }
+
+  onDestroy(() => {
+    pauseTimer();
+  });
 </script>
 
 <style>
